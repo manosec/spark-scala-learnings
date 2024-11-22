@@ -8,11 +8,11 @@ object rddUnionDist {
     val sprk_ctx = spark.sparkContext
 
     try {
-      // Create two RDDs of integers
+
       val rdd1 = sprk_ctx.parallelize(Seq(1, 2, 3, 4, 5))
       val rdd2 = sprk_ctx.parallelize(Seq(4, 5, 6, 7, 8))
 
-      // Perform union operation and remove duplicates using distinct
+      // Union Transformation
       val unionRDD = rdd1.union(rdd2).distinct()
 
       // Collect and print the result

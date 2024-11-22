@@ -12,8 +12,11 @@ object filterOutEven {
       val range = 1 to 100
       val paritioned = sprk_ctx.parallelize((range))
 
+      //Filter Transformation
       val output = paritioned.filter( _ % 2 != 0)
 
+
+      // Collect Action
       output.collect().foreach(num => {
         println(num)
       })

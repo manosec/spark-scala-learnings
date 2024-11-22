@@ -17,19 +17,21 @@ object csvParse {
         "David,21"
       )
 
-      // Create an RDD from the list of strings
       val rdd = sprk_ctx.parallelize(data)
 
-      //Transformation
+      //Map and Filter Transformation
       val filteredRdd = rdd
         .map(row => {
-          val fields = row.split(",") // Split by comma
-          (fields(0), fields(1).toInt) // Create a tuple (name, age)
+          val fields = row.split(",")
+          (fields(0), fields(1).toInt)
         })
-        .filter(record => record._2 >= 18) // Filter based on age
 
-      //Action
-      filteredRdd.collect().foreach(record => println(s"Name: ${record._1}, Age: ${record._2}"))
+      val filteredData = filteredRdd.filter(record => {
+        record._2 > 18
+      })
+
+      // Collect Action
+      filteredData.collect().foreach(record => println(s"Name: ${record._1}, Age: ${record._2}"))
 
     } finally {
       spark.stop()

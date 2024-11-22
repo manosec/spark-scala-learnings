@@ -8,7 +8,6 @@ object groupAndSum {
 
     try {
 
-      // Example RDD of key-value pairs
       val data = sprk_ctx.parallelize(Seq(("a", 3), ("b", 5), ("a", 2), ("b", 1), ("c", 4)))
 
       //Transformation

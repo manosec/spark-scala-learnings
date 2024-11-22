@@ -13,6 +13,7 @@ object sumOfN {
 
       //Action
       val sum = numbersRdd.reduce((a, b) => a + b)
+
       // Print the result
       println(s"The sum of integers from 1 to 100 using reduce is: $sum")
 

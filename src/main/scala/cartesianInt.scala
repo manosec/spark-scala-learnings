@@ -15,14 +15,11 @@ object cartesianInt {
       // Cartesian operation
       val cartesianResult = rdd1.cartesian(rdd2)
 
-      // Compute product of each pair
+      // Map Transformation
       val productResult = cartesianResult.map { case (a, b) => a * b }
 
-      // Display results
-      println("Cartesian Pairs:")
-      cartesianResult.collect().foreach(println)
-
       println("Products:")
+      // Collect Action
       productResult.collect().foreach(println)
     } finally {
       spark.stop()
