@@ -1,4 +1,6 @@
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.TaskContext
+
 
 object cartesianInt {
   def main(args: Array[String]): Unit = {
@@ -18,7 +20,6 @@ object cartesianInt {
       // Map Transformation
       val productResult = cartesianResult.map { case (a, b) => a * b }
 
-      println("Products:")
       // Collect Action
       productResult.collect().foreach(println)
     } finally {

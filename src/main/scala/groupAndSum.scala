@@ -11,8 +11,8 @@ object groupAndSum {
       val data = sprk_ctx.parallelize(Seq(("a", 3), ("b", 5), ("a", 2), ("b", 1), ("c", 4)))
 
       //Transformation
-      val groupedData = data.groupByKey() // This groups the data by key
-      val sumByKey = groupedData.mapValues(values => values.sum) // Sum the values for each key
+      val groupedData = data.groupByKey()
+      val sumByKey = groupedData.mapValues(values => values.sum)
 
       //Actions
       sumByKey.collect().foreach(println)
