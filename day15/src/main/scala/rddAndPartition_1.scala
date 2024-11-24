@@ -1,7 +1,7 @@
 import org.apache.spark.sql.SparkSession
 import java.io.Reader
 
-object rddAndParition {
+object rddAndPartition_1 {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().appName("RDD and Parition").master("local[5]").getOrCreate()
 

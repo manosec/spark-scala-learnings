@@ -1,6 +1,6 @@
 import org.apache.spark.sql.SparkSession
 
-object narrowAndWideTransform {
+object narrowAndWideTransform_2 {
   def main(args: Array[String]): Unit = {
     var spark = SparkSession.builder().appName("Narrow and Wide Transformation").master("local[1]").getOrCreate()
 
