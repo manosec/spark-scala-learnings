@@ -11,22 +11,21 @@ object narrowAndWideTransform_2 {
 
       val sparkData = sprk_ctx.parallelize((data))
 
+      // Narrow Ops
       val mappedData = sparkData.map(points => points * 2)
       val filteresData = sparkData.filter(_ % 2 != 0)
 
-      //Wide Transformation
       val wideData = sparkData.map(point => {
         (point * 5, point)
       })
 
-      // Explore what is the logic here with recudeByKey method
+      // Explore what is the logic here with recudeByKey method | Wide Operation
       val recucedWideData = wideData.reduceByKey(_ + _)
 
-      mappedData.saveAsTextFile("src/main/data/narrowWideMapped_N.txt")
-      filteresData.saveAsTextFile("src/main/data/narrowWideFiltered_N.txt")
-      recucedWideData.saveAsTextFile("src/main/data/narrowWideReduces_W.txt")
 
-
+      mappedData.saveAsTextFile("src/main/data/narrowAndWideTransform_2/data/narrowWideMapped_N.txt")
+      filteresData.saveAsTextFile("src/main/data/narrowAndWideTransform_2/data/narrowWideFiltered_N.txt")
+      recucedWideData.saveAsTextFile("src/main/data/narrowAndWideTransform_2/data/narrowWideReduces_W.txt")
 
     } finally {
       Thread.currentThread().join()

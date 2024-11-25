@@ -12,18 +12,15 @@ object experimentPartition_5 {
 
     try {
 
-      val numRows = 1000000
-      val data = (1 to numRows).map(_ => Random.nextInt(10000))
+      val dataCsv = sprk_ctx.textFile("src/main/data/large_dataset.csv")
 
       val partitionSizes = List(2, 4, 8)
-
-      val rdd = spark.sparkContext.parallelize(data)
 
       partitionSizes.foreach { numPartitions =>
         println(s"Processing with $numPartitions partitions")
 
         // Repartition the RDD
-        val partitionedRDD  = rdd.repartition(numPartitions)
+        val partitionedRDD  = dataCsv.repartition(numPartitions)
 
         // Action
         val rowCount = partitionedRDD.count()
@@ -32,7 +29,7 @@ object experimentPartition_5 {
         // Transformation
         val sortedRDD = partitionedRDD.sortBy(line => line)
 
-        val outputPath = s"src/main/data/partition_$numPartitions"
+        val outputPath = s"src/main/data/experimentPartition_5/data/partition_$numPartitions"
         sortedRDD.saveAsTextFile(outputPath)
 
         println(s"Finished processing for $numPartitions partitions. Check Spark UI for performance metrics.")

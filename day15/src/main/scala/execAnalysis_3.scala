@@ -11,13 +11,14 @@ object execAnalysis_3 {
 
     val sprk_ctx = spark.sparkContext
 
+
     val loremIpsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet."
 
-    val fillData = Seq.fill(100000000)(loremIpsum)
+    val fillData = Seq.fill(10000000)(loremIpsum)
 
     try {
 
-      val data = sprk_ctx.parallelize(fillData, 10)
+      val data = sprk_ctx.parallelize(fillData, 20)
 
       //Transform Ops
       val words = data.flatMap(lines => lines.split(" "))
@@ -26,8 +27,10 @@ object execAnalysis_3 {
         (point, 1)
       })
 
+      val reSuffle = mappedDataPairs.repartition(10)
+
       //Reduce Ops
-      val reducesPairs = mappedDataPairs.reduceByKey(_+_)
+      val reducesPairs = reSuffle.reduceByKey(_+_)
 
       reducesPairs.take(10).foreach(println)
 

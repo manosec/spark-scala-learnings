@@ -20,3 +20,7 @@ libraryDependencies ++= Seq(
   "com.amazonaws" % "aws-java-sdk-bundle" % "1.11.375",
   "mysql" % "mysql-connector-java" % "8.0.19"
 )
+libraryDependencies ++= Seq(
+  "org.apache.hadoop" % "hadoop-common" % "3.3.1",
+  "org.apache.hadoop" % "hadoop-hdfs" % "3.3.1"
+)
