@@ -1,0 +1,5 @@
+package kafkaStream
+
+object csvKafkaStream {
+
+}
