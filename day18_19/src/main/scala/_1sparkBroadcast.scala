@@ -18,15 +18,23 @@ object _1sparkBroadcast {
       val userDf = spark.read.format("csv").option("header", true).option("inferSchema", true).load("gs://artifacts_spark/user_details.csv")
       val transactionDf = spark.read.format("csv").option("header", true).option("inferSchema", true).load("gs://artifacts_spark/transaction_logs.csv")
 
-      //Broadcast Time period
+
+      //Broadcast
       val startTime  = System.currentTimeMillis() / 1000.0;
       val broadcastDf = broadcast(userDf)
       val joinedBroadDf = transactionDf.join(broadcastDf, "user_id")
+      println(joinedBroadDf.count())
       val endTime = System.currentTimeMillis() / 1000.0;
 
+      //Without Broadcast
+      val startOps = System.currentTimeMillis() / 1000.0
+      val joinDf = transactionDf.join(userDf, "user_id")
+      println(joinDf.count())
+      val endOps = System.currentTimeMillis() / 1000.0
 
-      joinedBroadDf.collect();
-      println(endTime - startTime);
+
+      println(s"Time taken to join the data without broadcast: ${endOps-startOps}")
+      println(s"Time taken to join the data with broadcast: ${endTime - startTime}");
 
     } finally {
 //      Thread.currentThread().join()
