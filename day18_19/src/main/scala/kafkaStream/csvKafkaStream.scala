@@ -1,5 +1,0 @@
-package kafkaStream
-
-object csvKafkaStream {
-
-}

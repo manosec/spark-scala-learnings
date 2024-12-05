@@ -12,7 +12,7 @@ object experimentPartition_5 {
 
     try {
 
-      val dataCsv = sprk_ctx.textFile("src/main/data/large_dataset.csv")
+      val dataCsv = sprk_ctx.textFile("src/main/data/large_dataset.csv", 10)
 
       val partitionSizes = List(2, 4, 8)
 

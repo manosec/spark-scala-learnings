@@ -1,4 +1,4 @@
-user_id,name,age,email
+userId,name,age,email
 1,User1,30,user1@example.com
 2,User2,42,user2@example.com
 3,User3,50,user3@example.com

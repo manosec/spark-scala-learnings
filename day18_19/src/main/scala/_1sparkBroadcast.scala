@@ -1,6 +1,6 @@
 import org.apache.hadoop.shaded.org.checkerframework.checker.units.qual.Current
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{broadcast, log}
+import org.apache.spark.sql.functions.{broadcast, current_timestamp, log}
 
 
 object _1sparkBroadcast {
@@ -17,11 +17,19 @@ object _1sparkBroadcast {
 
       val userDf = spark.read.format("csv").option("header", true).option("inferSchema", true).load("gs://artifacts_spark/user_details.csv")
       val transactionDf = spark.read.format("csv").option("header", true).option("inferSchema", true).load("gs://artifacts_spark/transaction_logs.csv")
+
+      //Broadcast Time period
+      val startTime  = System.currentTimeMillis() / 1000.0;
       val broadcastDf = broadcast(userDf)
       val joinedBroadDf = transactionDf.join(broadcastDf, "user_id")
-      joinedBroadDf.collect()
+      val endTime = System.currentTimeMillis() / 1000.0;
+
+
+      joinedBroadDf.collect();
+      println(endTime - startTime);
+
     } finally {
-      Thread.currentThread().join()
+//      Thread.currentThread().join()
       spark.stop()
     }
   }

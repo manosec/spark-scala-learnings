@@ -19,7 +19,7 @@ object kafkaProducer {
     }
 
     try {
-      val kafka_topic = "transactions"
+      val kafka_topic = "user_transaction_details"
       val jsonFilePath = "src/main/data/transactions.json"
 
       val messages = readJson(jsonFilePath)
