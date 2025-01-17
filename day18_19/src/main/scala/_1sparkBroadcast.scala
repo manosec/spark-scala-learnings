@@ -5,7 +5,7 @@ import org.apache.spark.sql.functions.{broadcast, current_timestamp, log}
 
 object _1sparkBroadcast {
   def main(args: Array[String]): Unit = {
-    val spark = SparkSession.builder().appName("Spark Broadcast").master("local[4]")
+    val spark = SparkSession.builder().appName("Spark Broadcast").master("local[*]")
       .config("spark.hadoop.fs.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem")
       .config("spark.hadoop.fs.AbstractFileSystem.gs.impl", "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS")
       .config("spark.hadoop.google.cloud.auth.service.account.enable", "true")
