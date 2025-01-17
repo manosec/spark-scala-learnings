@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ratings Analysis</title>
+<script src="https://cdn.plot.ly/plotly-1.52.2.min.js"></script>
+</head>
+<body>
+<div id="chart"></div>
+<script>
+(function () {
+  var data0 = {"x":["1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012","2013","2014","2015"],"name":"Average Ratings","y":[3.7,3.5614778965200102,3.6043686609177428,3.5261758778350414,3.611680198668057,3.582719338481802,3.5474717613541142,3.501837202738953,3.485253490840837,3.4380688007194675,3.436573723100307,3.468486949207258,3.4785849349864235,3.5474812625608765,3.528494320853906,3.562078686833833,3.5897459515607797,3.6308968552591345,3.6607698061081626,3.6209940750533343,3.52402006158835],"type":"bar"};
+
+  var data = [data0];
+  var layout = {"barmode":"group","title":"Ratings Analysis","yaxis":{"title":"Average Ratings"},"xaxis":{"title":"Time"}};
+ var config = {};
+
+  Plotly.plot('chart', data, layout, config);
+})();
+</script>
+</body>
+</html>
+       

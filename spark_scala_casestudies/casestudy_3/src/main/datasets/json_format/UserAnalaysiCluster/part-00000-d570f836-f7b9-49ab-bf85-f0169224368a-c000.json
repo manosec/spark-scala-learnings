@@ -1,0 +1,8 @@
+
+
+
+
+{"cluster":1,"avg_rating_in_cluster":3.2952841594424096,"variance_in_cluster":1.246725449163885,"rating_count_in_cluster":265.690837236534,"user_count":34160}
+{"cluster":3,"avg_rating_in_cluster":4.054227313187397,"variance_in_cluster":0.8182211489943733,"rating_count_in_cluster":257.38275542953903,"user_count":50787}
+{"cluster":2,"avg_rating_in_cluster":3.3692299161022814,"variance_in_cluster":0.919534954507769,"rating_count_in_cluster":2452.9405266343824,"user_count":6608}
+{"cluster":0,"avg_rating_in_cluster":3.458381021991388,"variance_in_cluster":0.8527813777700585,"rating_count_in_cluster":331.53843367846946,"user_count":46938}

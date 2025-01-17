@@ -1,8 +1,7 @@
-import org.apache.hadoop.shaded.org.checkerframework.checker.units.qual.Current
+import config.config.serviceAccountPath
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.functions.{broadcast, lag, desc, col, sum, avg, count}
 import org.apache.spark.sql.expressions.Window
-import .config.serviceAccountPath
+import org.apache.spark.sql.functions._
 
 object optimization {
   def main(args: Array[String]):Unit = {
@@ -40,7 +39,7 @@ object optimization {
       validatedFeaturesDF.cache()
       validatedStoresDF.cache()
 
-      // Broadcast the stores DataFrame (small dataset)
+      // Broadcast the stores Dat   aFrame (small dataset)
       val broadcastedStoresDF = broadcast(validatedStoresDF)
 
       // Perform joins with features.csv and stores.csv on relevant keys
@@ -55,7 +54,7 @@ object optimization {
       enrichedDF.write
         .mode("overwrite") // Overwrites existing data
         .option("header", "true") // Includes header row
-        .csv("gs://artifacts_spark/de-casestudy/usecase-4/processed_output/enriched_data_csv")
+        .csv("gs://artifacts_spark/de-casestudy/usecase-4/processed_output/enriched_data")
 
 
       // 2. Data Transformation
@@ -97,27 +96,26 @@ object optimization {
         .join(nonHolidaySales, Seq("Store", "Dept"), "outer")
         .orderBy(desc("Holiday_Sales"))
 
-      //Check this
       // 3. Storage Optimization
       // Partition the data by Store and Date and save it to Parquet
-      val partitionedDataPath = "gs://artifacts_spark/de-casestudy/usecase-4/processed_output/partitioned_data"
+      val partitionedDataPath = "gs://artifacts_spark/de-casestudy/usecase-4/processed_output/partitioned_by_store"
       enrichedDF.write
         .mode("overwrite")
         .partitionBy("Store")
         .parquet(partitionedDataPath)
 
       // Optionally save the metrics as JSON for further analysis
-      val storeMetricsPath = "gs://artifacts_spark/de-casestudy/usecase-4/processed_output/store_level"
+      val storeMetricsPath = "gs://artifacts_spark/de-casestudy/usecase-4/processed_output/store_level_sales_metrics"
       storeMetrics.write
         .mode("overwrite")
         .json(storeMetricsPath)
 
-      val departmentMetricsPath = "gs://artifacts_spark/de-casestudy/usecase-4/processed_output/department_level"
+      val departmentMetricsPath = "gs://artifacts_spark/de-casestudy/usecase-4/processed_output/department_level_sales_metrics"
       departmentMetrics.write
         .mode("overwrite")
         .json(departmentMetricsPath)
 
-      val holidayVsNonHolidayMetricsPath = "gs://artifacts_spark/de-casestudy/usecase-4/processed_output/holiday_vs_non_holiday"
+      val holidayVsNonHolidayMetricsPath = "gs://artifacts_spark/de-casestudy/usecase-4/processed_output/holiday_vs_non_holiday_sales_trend"
       holidayComparison.write
         .mode("overwrite")
         .json(holidayVsNonHolidayMetricsPath)
