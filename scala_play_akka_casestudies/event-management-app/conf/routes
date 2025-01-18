@@ -1,0 +1,41 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+
+
+
+
+# Task routes
+GET     /tasks/:id               controllers.TaskController.getTask(id: Long)
+PUT     /tasks/:id/status/:status controllers.TaskController.updateTaskStatus(id: Long, status: String)
+GET     /events/:eventId/tasks   controllers.TaskController.getTasksForEvent(eventId: Long)
+POST    /tasks/assign            controllers.TaskController.assignTasks()
+
+
+# User Routes
+POST    /users/register             controllers.UserController.register()
+POST    /users/login                controllers.UserController.login()
+
+
+# Event routes
+POST    /events                  controllers.EventController.createEvent()
+GET     /events/:id              controllers.EventController.getEventById(id: Long)
+PUT     /events/:id              controllers.EventController.updateEvent(id: Long)
+DELETE  /events/:id              controllers.EventController.deleteEvent(id: Long)
+GET     /events                  controllers.EventController.listEvents(status: Option[String])
+
+
+# Team routes
+POST    /teams                      controllers.TeamController.createTeam()
+GET     /teams/:id                  controllers.TeamController.getTeam(id: Long)
+PUT     /teams/:id                  controllers.TeamController.updateTeam(id: Long)
+DELETE  /teams/:id                  controllers.TeamController.deleteTeam(id: Long)
+GET     /teams                      controllers.TeamController.getAllTeams()
+GET     /events/:eventId/teams      controllers.TeamController.getTeamByEventId(eventId: Long)
