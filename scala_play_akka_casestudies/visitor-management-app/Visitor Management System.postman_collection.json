@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "673fbb06-e180-47b0-9b51-a92d64175233",
+		"name": "Visitor Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24074949"
+	},
+	"item": [
+		{
+			"name": "Receptionist",
+			"item": [
+				{
+					"name": "Register Receptionist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"receptionist@example.com\", \"password\": \"secure123\"}"
+						},
+						"url": {
+							"raw": "{{base_url}}/receptionist/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"receptionist",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Receptionist",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"receptionist@example.com\", \"password\": \"secure123\"}"
+						},
+						"url": {
+							"raw": "{{base_url}}/receptionist/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"receptionist",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Visitors",
+			"item": [
+				{
+					"name": "Get All Visitors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/visitor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"visitor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Visitor by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/visitor/10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"visitor",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Visitor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Mano\", \"email\": \"manoranjan@gmail.com\", \"phone\": \"8220302800\", \"checkedIn\": \"2024-03-20 10:00:00\", \"checkedOut\": \"2024-03-25 17:00:00\"}"
+						},
+						"url": {
+							"raw": "{{base_url}}/visitor",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"visitor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Visitor",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\": 1, \"name\": \"John Doe Updated\", \"email\": \"john@example.com\", \"phone\": \"1234567890\", \"checkedIn\": \"2024-03-20T10:00:00\", \"checkedOut\": \"2024-03-20T18:00:00\"}"
+						},
+						"url": {
+							"raw": "{{base_url}}/visitor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"visitor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Visitor",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/visitor/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"visitor",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Premise Departments",
+			"item": [
+				{
+					"name": "Get All Departments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/premiseDept",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"premiseDept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Department by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/premiseDept/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"premiseDept",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Department",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"Jon\", \"email\": \"jon@gmail.com\", \"mobile\": \"9876543210\", \"role\": \"IT\"}"
+						},
+						"url": {
+							"raw": "{{base_url}}/premiseDept",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"premiseDept"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Department",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id\": 3, \"name\": \"IT Department Updated\", \"email\": \"jon1@gmail.com\", \"mobile\": \"9876543210\", \"role\": \"IT\"}"
+						},
+						"url": {
+							"raw": "{{base_url}}/premiseDept/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"premiseDept",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IlJFQ0VQVElPTklTVCIsImlzcyI6InZpc2l0b3ItbWFuYWdlbWVudC1zeXN0ZW0iLCJleHAiOjE3MzcxMTgwNTYsImlhdCI6MTczNzAzMTY1Nn0.uPPGLl3IlbqWt-Ux4yoLGy8uxv5wNstjJ0vKlhXC2do",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:9000"
+		},
+		{
+			"key": "jwt_token",
+			"value": "your_jwt_token_here"
+		}
+	]
+}
